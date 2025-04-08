@@ -1,21 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { ProductOfferComponent } from '../shared/components/product-offer/product-offer.component';
 import { Product } from '../shared/models/product';
-import { PRODUCTS } from '../mock/products';
 import { HomeProductComponent } from './components/home-product/home-product.component';
+import { ProductService } from '../core/services/product.service';
+import { AsyncPipe } from '@angular/common';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-home',
-  imports: [ProductOfferComponent, HomeProductComponent],
+  imports: [ProductOfferComponent, HomeProductComponent, AsyncPipe],
   templateUrl: './home.component.html',
 })
 export class HomeComponent implements OnInit {
-  products: Product[] = PRODUCTS;
-  productOffers: Product[] = [];
+  productService = inject(ProductService);
 
-  ngOnInit(): void {
-    this.productOffers = this.products.filter(
-      (product) => product.previousPrice
-    );
-  }
+  products$: Observable<Product[]> = this.productService.getAll();
+  productOffers$: Observable<Product[]> = this.productService.getOffers();
+
+  ngOnInit(): void {}
 }

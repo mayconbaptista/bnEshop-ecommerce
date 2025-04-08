@@ -21,7 +21,7 @@
     >
       <!-- Carousel wrapper -->
       <div class="relative h-56 overflow-hidden rounded-lg sm:h-96">
-        @for (productOffer of productOffers; track $index) {
+        @for (productOffer of productOffers$ | async; track productOffer.id) {
         <div
           class="mt-8 sm:mt-28 lg:mt-24 hidden duration-700 ease-in-out"
           data-carousel-item
@@ -92,7 +92,7 @@
     <article
       class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
     >
-      @for (product of products; track $index) {
+      @for (product of products$ | async; track product.id) {
       <app-home-product [product]="product" />
       }
     </article>
