@@ -1,13 +1,13 @@
 import { Injectable, inject } from '@angular/core';
 import { Product } from '../../shared/models/product';
-import { ApiService } from './api.service';
 import { BehaviorSubject, Observable, map, of, tap } from 'rxjs';
+import { ProductApiService } from './product-api.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
-  private apiService = inject(ApiService);
+  private productApiService = inject(ProductApiService);
 
   private productsCache: Product[] = [];
   private productsSubject = new BehaviorSubject<Product[]>([]);
@@ -18,8 +18,8 @@ export class ProductService {
       return of(this.productsCache);
     }
 
-    return this.apiService.get<Product[]>('products').pipe(
-      tap((products) => {
+    return this.productApiService.getProducts().pipe(
+      tap((products: Product[]) => {
         this.productsCache = products;
         this.productsSubject.next(products);
       })
@@ -27,8 +27,9 @@ export class ProductService {
   }
 
   getOffers(): Observable<Product[]> {
+    const numberOfOffers = 5;
     return this.getAll().pipe(
-      map((products) => products.filter((product) => product.previousPrice))
+      map((products) => products.slice(0, numberOfOffers))
     );
   }
 
@@ -40,6 +41,11 @@ export class ProductService {
       }
     }
 
-    return this.apiService.get<Product>(`products/${id}`);
+    return this.productApiService.getProduct(id).pipe(
+      tap((product: Product | undefined) => {
+        if (product && this.productsCache.length === 0) {
+        }
+      })
+    );
   }
 }

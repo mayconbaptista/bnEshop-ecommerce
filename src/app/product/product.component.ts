@@ -3,7 +3,7 @@ import { Product } from '../shared/models/product';
 import { CurrencyPipe, AsyncPipe } from '@angular/common';
 import { ProductService } from '../core/services/product.service';
 import { CartProduct } from '../shared/models/cart-product';
-import { Observable, map, switchMap, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-product',
