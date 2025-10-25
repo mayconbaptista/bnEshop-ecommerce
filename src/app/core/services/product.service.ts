@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { Product } from '../../shared/models/product';
+import { Product } from '../models/product';
 import { BehaviorSubject, Observable, map, of, tap } from 'rxjs';
 import { ProductApiService } from './product-api.service';
 
@@ -43,8 +43,12 @@ export class ProductService {
 
     return this.productApiService.getProduct(id).pipe(
       tap((product: Product | undefined) => {
-        if (product && this.productsCache.length === 0) {
-        }
+        console.log("product :", product)
+      }),
+      tap({
+        next: value => console.log("Next Notification: ", value),
+        error: err => console.error("Error notification: ", err),
+        complete: () => console.log("complete notofication")        
       })
     );
   }

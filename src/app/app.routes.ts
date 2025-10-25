@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { CartComponent } from './cart/cart.component';
-import { ProductComponent } from './product/product.component';
-import { PaymentSuccessComponent } from './payment/payment-success/payment-success.component';
+import { HomeComponent } from './features/home/home.component';
+import { CartComponent } from './features/cart/cart.component';
+import { ProductComponent } from './features/product/product.component';
+import { PaymentSuccessComponent } from './features/payment/payment-success/payment-success.component';
 
 export const routes: Routes = [
   {

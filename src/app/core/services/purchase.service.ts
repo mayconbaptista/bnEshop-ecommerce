@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { SavePurchaseDto } from '../../shared/models/save-purchase';
+import { SavePurchaseDto } from '../models/save-purchase';
 
 @Injectable({
   providedIn: 'root',

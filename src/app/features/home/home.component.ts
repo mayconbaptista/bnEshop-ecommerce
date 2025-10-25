@@ -1,8 +1,8 @@
 import { Component, inject, OnInit, ChangeDetectorRef } from '@angular/core';
-import { ProductOfferComponent } from '../shared/components/product-offer/product-offer.component';
-import { Product } from '../shared/models/product';
+import { ProductOfferComponent } from '../../shared/components/product-offer/product-offer.component';
+import { Product } from '../../core/models/product';
 import { HomeProductComponent } from './components/home-product/home-product.component';
-import { ProductService } from '../core/services/product.service';
+import { ProductService } from '../../core/services/product.service';
 import { AsyncPipe } from '@angular/common';
 import { Observable, tap } from 'rxjs';
 import { initFlowbite } from 'flowbite';

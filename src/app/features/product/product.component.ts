@@ -1,8 +1,8 @@
 import { Component, inject, input, OnInit } from '@angular/core';
-import { Product } from '../shared/models/product';
+import { Product } from '../../core/models/product';
 import { CurrencyPipe, AsyncPipe } from '@angular/common';
-import { ProductService } from '../core/services/product.service';
-import { CartProduct } from '../shared/models/cart-product';
+import { ProductService } from '../../core/services/product.service';
+import { CartProduct } from '../../core/models/cart-product';
 import { Observable } from 'rxjs';
 
 @Component({

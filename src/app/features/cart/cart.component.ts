@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CartProductComponent } from './components/cart-product/cart-product.component';
 import { CurrencyPipe } from '@angular/common';
-import { CartProduct } from '../shared/models/cart-product';
+import { CartProduct } from '../../core/models/cart-product';
 
 @Component({
   selector: 'app-cart',

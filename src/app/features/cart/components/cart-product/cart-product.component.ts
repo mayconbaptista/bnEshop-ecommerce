@@ -1,5 +1,5 @@
 import { Component, input, OnInit, output } from '@angular/core';
-import { CartProduct } from '../../../shared/models/cart-product';
+import { CartProduct } from '../../../../core/models/cart-product';
 import { CurrencyPipe } from '@angular/common';
 
 @Component({

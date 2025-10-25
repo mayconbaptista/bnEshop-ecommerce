@@ -1,7 +1,8 @@
 import { CurrencyPipe, PercentPipe } from '@angular/common';
 import { Component, input, OnInit } from '@angular/core';
-import { Product } from '../../models/product';
+import { Product } from '../../../core/models/product';
 import { RouterLink } from '@angular/router';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-product-offer',

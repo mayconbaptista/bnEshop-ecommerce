@@ -99,3 +99,46 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - Design inspired by Amazon's user interface
 - Icons provided by [Flowbite](https://flowbite.com/)
 - Product images and descriptions are used for demonstration purposes only
+
+## Arquiteture
+
+- Arquitetura Baseada em Funcionalidades (Feature-Based Architecture).
+
+```
+src/app/
+├── core/
+│   ├── services/         // Serviços Singleton (AuthService, LoggerService)
+│   ├── guards/           // Route Guards (AuthGuard)
+│   ├── interceptors/     // HTTP Interceptors
+│   └── models/           // Modelos globais
+│
+├── features/             // Pasta para agrupar as funcionalidades
+│   ├── products/
+│   │   ├── components/
+│   │   │   ├── product-list/
+│   │   │   └── product-detail/
+│   │   ├── services/
+│   │   │   └── product.service.ts  // Serviço que chama a API de produtos diretamente
+│   │   ├── models/
+│   │   │   └── product.model.ts    // Interface do produto
+│   │   ├── products-routing.module.ts
+│   │   └── products.module.ts      // Módulo que agrupa tudo de "products"
+│   │
+│   ├── cart/
+│   │   ├── components/
+│   │   │   └── cart-summary/
+│   │   ├── services/
+│   │   │   └── cart.service.ts
+│   │   ├── cart-routing.module.ts
+│   │   └── cart.module.ts
+│
+├── shared/
+│   ├── components/         // Componentes reutilizáveis (Button, Modal, Input)
+│   ├── directives/
+│   ├── pipes/
+│   └── shared.module.ts
+│
+├── app-routing.module.ts
+├── app.component.ts
+└── app.module.ts
+```

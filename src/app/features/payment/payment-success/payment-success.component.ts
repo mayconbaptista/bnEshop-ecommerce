@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { CartProduct } from '../../shared/models/cart-product';
-import { PurchaseService } from '../../core/services/purchase.service';
+import { CartProduct } from '../../../core/models/cart-product';
+import { PurchaseService } from '../../../core/services/purchase.service';
 
 @Component({
   selector: 'app-payment-success',
