@@ -1,1 +1,16 @@
-<p>checkout page</p>
+
+<mat-stepper [linear]="true" #stepper>
+  <mat-step>
+    <app-shipping-address [_formShippingAddress]="this.getShippingAddressGroup"></app-shipping-address>
+  </mat-step>
+  <mat-step>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    <p>You are now done.</p>
+    <div>
+      <button matButton matStepperPrevious>Back</button>
+      <button matButton (click)="stepper.reset()">Reset</button>
+    </div>
+  </mat-step>
+</mat-stepper>

@@ -29,4 +29,8 @@ export class CartComponent implements OnInit {
       );
     }
   }
+
+  protected redirect():void{
+
+  }
 }

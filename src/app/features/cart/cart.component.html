@@ -1,7 +1,7 @@
 <main class="bg-white py-8 antialiased md:py-16">
   <section class="mx-auto max-w-screen-xl px-4 2xl:px-0">
     <h2 class="text-xl font-semibold text-gray-900 sm:text-2xl">
-      Shopping Cart
+      Carrinho de compras
     </h2>
 
     <div class="mt-6 sm:mt-8 md:gap-6 lg:flex lg:items-start xl:gap-8">
@@ -26,7 +26,7 @@
                   routerLink="/"
                   class="inline-flex items-center gap-2 text-sm font-medium text-yellow-400 underline hover:no-underline"
                 >
-                  Continue Shopping
+                  Continuar comprando
                   <svg
                     class="h-5 w-5"
                     aria-hidden="true"
@@ -59,7 +59,7 @@
         <div
           class="space-y-4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm sm:p-6"
         >
-          <p class="text-xl font-semibold text-gray-900">Order summary</p>
+          <p class="text-xl font-semibold text-gray-900">Resumo do pedido</p>
 
           <div class="space-y-4">
             <dl
@@ -73,18 +73,19 @@
           </div>
 
           <button
+            (click)="this.redirect()"
             class="flex w-full items-center justify-center rounded-lg bg-yellow-400 px-5 py-2.5 text-sm font-medium text-white focus:outline-none focus:ring-4 focus:ring-yellow-200"
           >
-            Proceed to Checkout
+            Fazer Checkout
           </button>
 
           <div class="flex items-center justify-center gap-2">
-            <span class="text-sm font-normal text-gray-500"> or </span>
+            <span class="text-sm font-normal text-gray-500"> ou </span>
             <a
               routerLink="/"
               class="inline-flex items-center gap-2 text-sm font-medium text-yellow-400 underline hover:no-underline"
             >
-              Continue Shopping
+              Continuar comprando
               <svg
                 class="h-5 w-5"
                 aria-hidden="true"
@@ -113,7 +114,7 @@
                 for="voucher"
                 class="mb-2 block text-sm font-medium text-gray-900"
               >
-                Do you have a voucher or gift card?
+                Você tem um voucher ou cartão-presente?
               </label>
               <input
                 type="text"
@@ -127,7 +128,7 @@
               type="submit"
               class="flex w-full items-center justify-center rounded-lg px-5 py-2.5 text-sm font-medium text-white bg-yellow-400 focus:outline-none focus:ring-4 focus:ring-yellow-200"
             >
-              Apply Code
+              Aplicar código
             </button>
           </form>
         </div>

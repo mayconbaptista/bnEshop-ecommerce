@@ -20,8 +20,7 @@ export class ProductComponent implements OnInit {
   }
 
   addToCart(product: Product) {
-    const cartProducts: CartProduct[] =
-      JSON.parse(localStorage.getItem('cart-products') as string) || [];
+    const cartProducts: CartProduct[] = JSON.parse(localStorage.getItem('cart-products') as string) || [];
 
     const matched = cartProducts.find(({ product: p }) => p.id === product.id);
 
@@ -31,5 +30,9 @@ export class ProductComponent implements OnInit {
       cartProducts.push({ product, quantity: 1 });
     }
     localStorage.setItem('cart-products', JSON.stringify(cartProducts));
+  }
+
+  protected adicionarProductCarrrinho():void{
+    
   }
 }
