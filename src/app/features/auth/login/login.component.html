@@ -1,0 +1,24 @@
+
+<form 
+    [formGroup]="this.loginForm" 
+    (ngSubmit)="onSubmit()" 
+    method="post">
+    <div
+        class="p-2 w-50 flex flex-col items-center justify-center"
+    >
+    
+        <mat-form-field appearance="fill">
+            <label for="username">Usuário:</label>
+            <input matInput formControlName="userEmail" type="text" id="username" name="username" required>
+        </mat-form-field>
+    
+        <mat-form-field appearance="fill">
+            <label for="password">Senha:</label>
+            <input matInput formControlName="password" type="password" id="password" name="password" required>
+        </mat-form-field>
+    
+        <button class="btn btn-primary" type="submit">Entrar</button>
+    
+    </div>
+</form>
+

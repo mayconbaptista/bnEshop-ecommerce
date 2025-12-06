@@ -2,8 +2,8 @@ import { Component, inject, input, OnInit } from '@angular/core';
 import { Product } from '../../core/models/product';
 import { CurrencyPipe, AsyncPipe } from '@angular/common';
 import { ProductService } from '../../core/services/product.service';
-import { CartProduct } from '../../core/models/cart-product';
 import { Observable } from 'rxjs';
+import { CartApiService } from '../../core/services/cart-api.service';
 
 @Component({
   selector: 'app-product',
@@ -12,27 +12,25 @@ import { Observable } from 'rxjs';
 })
 export class ProductComponent implements OnInit {
   id = input<string>('');
-  productService = inject(ProductService);
   product$!: Observable<Product | undefined>;
 
+  private cartApiService = inject(CartApiService);
+  private productService = inject(ProductService);
+  
   ngOnInit(): void {
     this.product$ = this.productService.getById(this.id());
   }
 
   addToCart(product: Product) {
-    const cartProducts: CartProduct[] = JSON.parse(localStorage.getItem('cart-products') as string) || [];
-
-    const matched = cartProducts.find(({ product: p }) => p.id === product.id);
-
-    if (matched) {
-      matched.quantity++;
-    } else {
-      cartProducts.push({ product, quantity: 1 });
-    }
-    localStorage.setItem('cart-products', JSON.stringify(cartProducts));
-  }
-
-  protected adicionarProductCarrrinho():void{
     
+    const cartRequest = {
+      productId: product.id,
+      quantity: 1
+    }
+    
+    this.cartApiService.Adicionar(cartRequest).subscribe({
+      next: () => window.alert("produto inserido ao carrinho com sucesso"),
+      error: (err) => window.alert("erro ao inserir produto ao carrinho")
+    });
   }
 }

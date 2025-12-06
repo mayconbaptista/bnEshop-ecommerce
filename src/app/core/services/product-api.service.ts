@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { Product } from '../models/product';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { ApiService } from './api.service';
 
@@ -25,6 +25,21 @@ export class ProductApiService {
   private http = inject(HttpClient);
   private baseService = inject(ApiService);
   private apiCatalogProductUrl = 'api/catalog/product';
+
+  filterProducts(ids: string[]): Observable<Product[]> {
+    let params = new HttpParams();
+
+    ids.forEach(id => {
+      params = params.append('ids', id);
+    });
+    
+    return this.baseService.get<ApiProduct[]>(`${this.apiCatalogProductUrl}/filter`, { params })
+      .pipe(
+        map((apiProducts) =>
+          apiProducts.map((apiProduct) => this.mapApiProductToProduct(apiProduct))
+        )
+      );
+  }
 
   getProducts(): Observable<Product[]> {
     return this.baseService.get<ApiProduct[]>(`${this.apiCatalogProductUrl}/filter`)

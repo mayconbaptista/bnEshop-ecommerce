@@ -26,6 +26,33 @@ export class ProductService {
     );
   }
 
+  filterCartProducts(ids: string[]): Observable<Product[]> {
+
+    let restantes: string[] = [];
+    let encontrados: Product[] = [];
+
+    if(this.productsCache.length > 0){
+      encontrados = this.productsCache.filter(product => ids.includes(product.id as string));
+      restantes = ids.filter(id => !encontrados.some(product => product.id === id));
+
+      if(restantes.length === 0){
+        return of(encontrados);
+      }
+    }
+
+    return this.productApiService.filterProducts(restantes).pipe(
+      tap((products: Product[]) => {
+
+        encontrados = encontrados.concat(products).sort((a, b) => a.name.localeCompare(b.name));
+
+        this.productsCache = this.productsCache.concat(products);
+        this.productsSubject.next(encontrados);
+
+        return encontrados;
+      })
+    );
+  }
+
   getOffers(): Observable<Product[]> {
     const numberOfOffers = 5;
     return this.getAll().pipe(

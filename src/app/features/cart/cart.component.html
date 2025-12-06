@@ -7,7 +7,7 @@
     <div class="mt-6 sm:mt-8 md:gap-6 lg:flex lg:items-start xl:gap-8">
       <div class="mx-auto w-full flex-none lg:max-w-2xl xl:max-w-4xl">
         <div class="space-y-6">
-          @if (cartProducts.length == 0) {
+          @if(cartProducts().length == 0) {
           <div class="flex flex-col mx-auto">
             <div class="relative size-64 mx-auto">
               <img
@@ -46,9 +46,9 @@
               </p>
             </div>
           </div>
-          } @else { @for (cartProduct of cartProducts; track $index) {
+          } @else { @for (cartProduct of cartProducts(); track cartProduct.product.id) {
           <app-cart-product
-            (updateCartEvent)="updateCart()"
+            (updateCartEvent)="update()"
             [cartProduct]="cartProduct"
           />
           } }
@@ -67,13 +67,12 @@
             >
               <dt class="text-base font-bold text-gray-900">Total</dt>
               <dd class="text-base font-bold text-gray-900">
-                {{ total | currency }}
+                {{ total() | currency : 'BRL'}}
               </dd>
             </dl>
           </div>
 
           <button
-            (click)="this.redirect()"
             class="flex w-full items-center justify-center rounded-lg bg-yellow-400 px-5 py-2.5 text-sm font-medium text-white focus:outline-none focus:ring-4 focus:ring-yellow-200"
           >
             Fazer Checkout

@@ -3,6 +3,8 @@ import { HomeComponent } from './features/home/home.component';
 import { CartComponent } from './features/cart/cart.component';
 import { ProductComponent } from './features/product/product.component';
 import { PaymentSuccessComponent } from './features/checkout/payment/payment-success/payment-success.component';
+import { AuthComponent } from './features/auth/auth.component';
+import { LoginComponent } from './features/auth/login/login.component';
 
 export const routes: Routes = [
   {
@@ -21,4 +23,8 @@ export const routes: Routes = [
     path: 'PaymentSuccess',
     component: PaymentSuccessComponent,
   },
+  {
+    path: 'auth',
+    component: AuthComponent
+  }
 ];
