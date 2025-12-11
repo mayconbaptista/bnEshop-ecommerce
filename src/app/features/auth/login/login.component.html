@@ -1,24 +1,47 @@
+<main class="bg-white py-8 antialiased md:py-16">
 
-<form 
-    [formGroup]="this.loginForm" 
-    (ngSubmit)="onSubmit()" 
-    method="post">
-    <div
-        class="p-2 w-50 flex flex-col items-center justify-center"
-    >
+  <section class="mx-auto max-w-screen-xl px-4 2xl:px-0">
+
+    <div class="mx-auto mt-6 max-w-4xl flex-1 space-y-6 lg:mt-0 lg:w-full">
+
+        <div
+            class="space-y-4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm sm:p-6 max-w-sm mx-auto"
+        >
     
-        <mat-form-field appearance="fill">
-            <label for="username">Usuário:</label>
-            <input matInput formControlName="userEmail" type="text" id="username" name="username" required>
-        </mat-form-field>
+            <h2 class="text-center">Login</h2>
+            
+            <form 
+                [formGroup]="this.loginForm" 
+                (ngSubmit)="onSubmit()" 
+                method="post">
+                <div
+                    class="p-2 w-full flex flex-col items-center justify-center"
+                >
+                    <mat-form-field appearance="outline" class="w-full">
+                        <label for="username">Usuário</label>
+                        <input matInput formControlName="userEmail" type="text" id="username" name="username" required>
+                    </mat-form-field>
+                
+                    <mat-form-field appearance="outline" class="w-full">
+                        <label for="password">Senha</label>
+                        <input matInput formControlName="password" type="password" id="password" name="password" required>
+                    </mat-form-field>
+            
+                    <button 
+                        mat-button
+                        class="flex w-full items-center justify-center rounded-lg px-5 py-2.5 text-sm font-medium text-white bg-yellow-400 focus:outline-none focus:ring-4 focus:ring-yellow-200"
+                        type="submit" 
+                        color="primary"
+                    >
+                        Entrar
+                    </button>
+                
+                </div>
+            </form>
     
-        <mat-form-field appearance="fill">
-            <label for="password">Senha:</label>
-            <input matInput formControlName="password" type="password" id="password" name="password" required>
-        </mat-form-field>
-    
-        <button class="btn btn-primary" type="submit">Entrar</button>
-    
+        </div>
     </div>
-</form>
+  </section>
+</main>
+
 

@@ -6,10 +6,15 @@ import { CartApiService } from '../../core/services/cart-api.service';
 import { forkJoin, map, of, switchMap } from 'rxjs';
 import { ProductService } from '../../core/services/product.service';
 import { CartItem } from '../../core/models/cart-item';
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-cart',
-  imports: [CartProductComponent, CurrencyPipe],
+  imports: [
+    CartProductComponent, 
+    CurrencyPipe, 
+    RouterLink
+  ],
   templateUrl: './cart.component.html',
 })
 export class CartComponent implements OnInit {

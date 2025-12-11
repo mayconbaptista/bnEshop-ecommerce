@@ -1,16 +1,36 @@
-
-<mat-stepper [linear]="true" #stepper>
-  <mat-step>
-    <app-shipping-address [_formShippingAddress]="this.getShippingAddressGroup"></app-shipping-address>
-  </mat-step>
-  <mat-step>
-  </mat-step>
-  <mat-step>
-    <ng-template matStepLabel>Done</ng-template>
-    <p>You are now done.</p>
-    <div>
-      <button matButton matStepperPrevious>Back</button>
-      <button matButton (click)="stepper.reset()">Reset</button>
-    </div>
-  </mat-step>
-</mat-stepper>
+<main class="bg-white py-8 antialiased md:py-16">
+  <section class="mx-auto max-w-screen-xl px-4 2xl:px-0 items-center">
+    <h2 class="text-xl font-semibold text-gray-900 sm:text-2xl">
+      Checkout
+    </h2>
+      <mat-stepper 
+        [linear]="true"
+        #stepper 
+        class="mt-6 sm:mt-8 md:gap-6 md:items-center lg:flex lg:items-center xl:gap-8"
+      >
+        <mat-step>
+          <ng-template matStepLabel>Endereço de entrega</ng-template>
+          <app-shipping-address [_formShippingAddress]="this.getShippingAddressGroup"></app-shipping-address>
+            <div class="w-full d-flex d-flex-column justify-content-between align-items-center">
+              <button [disabled]="true" matButton matStepperPrevious>Anterior</button>
+              <button matButton matStepperNext>Próximo</button>
+            </div>
+        </mat-step>
+        <mat-step>
+          <ng-template matStepLabel>Endereço de cobrança</ng-template>
+          <app-billing-address [_billingAddressForm]="this.getBillingAddresGroup"></app-billing-address>
+          <div class="w-full d-flex d-flex-column justify-content-between align-items-center">
+            <button matButton matStepperPrevious>Anterior</button>
+            <button matButton matStepperNext>Próximo</button>
+          </div>
+        </mat-step>
+        <mat-step>
+          <ng-template matStepLabel>Pagamento</ng-template>
+          <div class="w-full d-flex d-flex-column justify-content-between align-items-center">
+            <button matButton matStepperPrevious>Anterior</button>
+            <button [disabled]="true" matButton matStepperNext>Próximo</button>
+          </div>
+        </mat-step>
+      </mat-stepper>
+  </section>
+</main>

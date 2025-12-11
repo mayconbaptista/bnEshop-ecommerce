@@ -4,7 +4,13 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatButtonModule} from '@angular/material/button';
-import { ShippingAddressComponent } from './shipping-address/shipping-address.component';
+import { ShippingAddressComponent, ShippingAddresFrom } from './shipping-address/shipping-address.component';
+import { BillingAddressForm, BillingAddressComponent } from './billing-address/billing-address.component';
+
+export interface CheckoutForm{
+  enderecoEntrega: FormGroup<ShippingAddresFrom>;
+  enderecoCobranca: FormGroup<BillingAddressForm>;
+}
 
 @Component({
   selector: 'app-checkout',
@@ -16,7 +22,8 @@ import { ShippingAddressComponent } from './shipping-address/shipping-address.co
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
-    ShippingAddressComponent
+    ShippingAddressComponent,
+    BillingAddressComponent
 ],
   templateUrl: './checkout.component.html',
   styleUrl: './checkout.component.css'
@@ -25,10 +32,14 @@ import { ShippingAddressComponent } from './shipping-address/shipping-address.co
 export class CheckoutComponent implements OnInit {
 
   private _formBuilder = inject(FormBuilder);
-  protected _form!:FormGroup;
+  public _form!:FormGroup;
 
-  public getShippingAddressGroup():FormGroup{
-    return this._form.get('enderecoEntrega') as FormGroup;
+  public get getShippingAddressGroup():FormGroup<ShippingAddresFrom>{
+    return this._form.get('enderecoEntrega') as FormGroup<ShippingAddresFrom>;
+  }
+
+  public get getBillingAddresGroup():FormGroup<BillingAddressForm>{
+    return this._form.get('enderecoCobranca') as FormGroup<BillingAddressForm>;
   }
   
   ngOnInit(): void {
@@ -36,24 +47,24 @@ export class CheckoutComponent implements OnInit {
   }
 
   initForm():void{
-    this._form = this._formBuilder.group({
-      enderecoEntrega: this._formBuilder.group({
-        nome: [null, [Validators.required]],
-        cep: [null, [Validators.required, Validators.pattern("[0-9]{5}\d-[0-9]{3}\d")]],
-        rua: [null, [Validators.required]],
-        bairro: [null, [Validators.required]],
-        cidade: [null, [Validators.required]],
-        estado: [null, [Validators.required]],
-        email: [null, [Validators.required, Validators.email]],
-        telefone: [null, [Validators.required]]
+    this._form = this._formBuilder.group<CheckoutForm>({
+      enderecoEntrega: this._formBuilder.group<ShippingAddresFrom>({
+        nome: new FormControl<string | null>(null, [Validators.required]),
+        cep: new FormControl<string | null>(null, [Validators.required, Validators.pattern("[0-9]{5}\d-[0-9]{3}\d")]),
+        rua: new FormControl<string | null>(null, [Validators.required]),
+        bairro: new FormControl<string | null>(null, [Validators.required]),
+        cidade: new FormControl<string | null>(null, [Validators.required]),
+        estado: new FormControl<string | null>(null, [Validators.required]),
+        email: new FormControl<string | null>(null, [Validators.required, Validators.email]),
+        telefone: new FormControl<string | null>(null, [Validators.required])
       }),
-      enderecoCobranca: this._formBuilder.group({
-        nome: [null, [Validators.required]],
-        cep: [null, [Validators.required, Validators.pattern("[0-9]{5}\d-[0-9]{3}\d")]],
-        rua: [null, [Validators.required]],
-        bairro: [null, [Validators.required]],
-        cidade: [null, [Validators.required]],
-        estado: [null, [Validators.required]],
+      enderecoCobranca: this._formBuilder.group<BillingAddressForm>({
+        nome: new FormControl<string | null>(null, [Validators.required]),
+        cep: new FormControl<string | null>(null, [Validators.required, Validators.pattern("[0-9]{5}\d-[0-9]{3}\d")]),
+        rua: new FormControl<string | null>(null, [Validators.required]),
+        bairro: new FormControl<string | null>(null, [Validators.required]),
+        cidade: new FormControl<string | null>(null, [Validators.required]),
+        estado: new FormControl<string | null>(null, [Validators.required])
       })
     })
   }

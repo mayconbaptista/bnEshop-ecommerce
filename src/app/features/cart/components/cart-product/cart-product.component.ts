@@ -11,11 +11,8 @@ import { CartItem } from '../../../../core/models/cart-item';
 })
 export class CartProductComponent {
   cartProduct = input.required<CartProduct>();
-  protected total = computed(() => this.cartProduct().product.price * this.cartProduct().quantity);
-
   private cartApiService = inject(CartApiService);
   updateCartEvent = output<void>();
-
 
   protected async updateQuantity(num: number):Promise<void> {
     
@@ -38,7 +35,6 @@ export class CartProductComponent {
   }
 
   removeProduct() {
-    
     this.cartApiService
     .Remover(this.cartProduct().product.id).subscribe({
       next: () => {

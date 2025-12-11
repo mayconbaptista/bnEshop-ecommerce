@@ -1,0 +1,5 @@
+@import "../../../styles/index.css";
+
+.mat-stepper-vertical, .mat-stepper-horizontal{
+    background-color: transparent;
+}

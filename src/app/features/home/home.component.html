@@ -2,16 +2,16 @@
   <section class="grid place-content-center lg:grid-cols-2 gap-4 lg:py-32">
     <article class="flex flex-col max-w-xl mx-auto gap-2">
       <h1 class="text-gray-950 font-bold text-4xl sm:text-5xl lg:text-7xl">
-        Shop Computer & Accesories
+        Loja de Computadores e Acessórios
       </h1>
       <p class="text-lg md:text-xl text-gray-500">
-        Shop laptops, desktops, monitors, tablets, PC gaming, hard drives and
-        storage, accesories and more.
+        Compre laptops, desktops, monitores, tablets, jogos para PC, discos rígidos e
+        armazenamento, acessórios e muito mais.
       </p>
       <button
         class="text-gray-700 rounded-md border border-gray-500 px-4 py-2 w-fit focus:ring-4 focus:ring-gray-200"
       >
-        View More
+        Ver Mais
       </button>
     </article>
     <article
@@ -54,7 +54,7 @@
               d="M5 1 1 5l4 4"
             />
           </svg>
-          <span class="sr-only">Previous</span>
+          <span class="sr-only">Anterior</span>
         </span>
       </button>
       <button
@@ -80,21 +80,25 @@
               d="m1 9 4-4-4-4"
             />
           </svg>
-          <span class="sr-only">Next</span>
+          <span class="sr-only">Próximo</span>
         </span>
       </button>
     </article>
   </section>
   <section class="my-4 space-y-4 w-full">
     <h2 class="text-center font-bold text-gray-950 text-3xl sm:text-4xl">
-      Pick Your Favorite Product
+      Escolha seu produto favorito
     </h2>
     <article
       class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
     >
+    @defer (when products$ | async) {
       @for (product of products$ | async; track product.id) {
       <app-home-product [product]="product" />
       }
+    }@loading {
+      <p>Carregando...</p>
+    }
     </article>
   </section>
 </main>

@@ -1,0 +1,13 @@
+@import "../../../../styles/index.css";
+
+.b-color-transparent{
+    background-color: transparent !important;
+}
+
+.campo-transparente {
+  /* Sobrescreve a variável oficial de cor de fundo*/
+  --mdc-filled-text-field-container-color: transparent;
+  
+  /* Se quiser remover também a linha de baixo (opcional): */
+  --mdc-filled-text-field-active-indicator-color: transparent;
+}
