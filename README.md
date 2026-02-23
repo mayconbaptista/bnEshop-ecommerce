@@ -1,128 +1,87 @@
-# Amazon Frontend
+# EshoBN (Eshop Bom negócio)
 
-A modern e-commerce frontend application built with Angular 19, inspired by Amazon's user interface. This project provides a comprehensive shopping experience with product browsing, cart management, and checkout functionality.
+Uma aplicação frontend moderna de e-commerce construída com Angular 19, inspirada na interface de usuário da Amazon. Este projeto oferece uma experiência completa de compra com navegação de produtos, gerenciamento de carrinho e funcionalidade de checkout.
 
-## 🚀 Features
 
-- **Product Catalog**: Browse through a variety of products with detailed information
-- **Shopping Cart**: Add products to your cart and manage quantities
-- **User Authentication**: Login and registration functionality (simulated)
-- **Checkout Process**: Complete purchase flow with address and payment information
-- **Responsive Design**: Optimized for desktop and mobile devices using Tailwind CSS
-- **Payment Success Page**: Confirmation page after successful checkout
+## 🚀 Funcionalidades
 
-## 🛠️ Technology Stack
+Catálogo de Produtos: Navegue por uma variedade de produtos com informações detalhadas
 
-- **Framework**: Angular 19.x
-- **Styling**: Tailwind CSS 4.x with Flowbite components
-- **State Management**: Angular's built-in services
-- **Routing**: Angular Router
-- **Mock Data**: Simulated product and user data
+Carrinho de Compras: Adicione produtos ao carrinho e gerencie as quantidades
 
-## 📋 Prerequisites
+Autenticação de Usuário: Funcionalidade de login
 
-- Node.js (v18.x or higher)
-- npm (v9.x or higher)
-- Angular CLI (v19.x)
+Processo de Checkout: Fluxo completo de compra com informações de endereço e pagamento (Em andamento)
 
-## 🔧 Installation
+Design Responsivo: Otimizado para dispositivos desktop e mobile utilizando Tailwind CSS
 
-1. Clone the repository:
+Página de Sucesso do Pagamento: Página de confirmação após a finalização da compra
 
-   ```bash
-   git clone https://github.com/enzocandido/angular-ecommerce.git
-   cd amazon-frontend
-   ```
+## 🛠️ Stack de Tecnologias
 
-2. Install dependencies:
+Framework: Angular 19.x
 
-   ```bash
-   npm install
-   ```
+Estilização: Tailwind CSS 4.x com componentes Flowbite
 
-3. Start the development server:
-   ```bash
-   npm start
-   ```
-4. Open your browser and navigate to:
-   ```
-   http://localhost:4200
-   ```
+Gerenciamento de Estado: Serviços nativos do Angular
 
-## 📁 Project Structure
+Roteamento: Angular Router
 
-```
-src/
-├── app/
-│   ├── cart/            # Shopping cart functionality
-│   ├── checkout/        # Checkout process components
-│   ├── core/            # Core services and guards
-│   ├── home/            # Homepage components
-│   ├── mock/            # Mock data for development
-│   ├── payment/         # Payment processing and confirmation
-│   ├── product/         # Product details components
-│   └── shared/          # Shared components and utilities
-├── environments/        # Environment configuration
-```
+Dados Mockados: Dados simulados de produtos e usuários
 
-## ⚙️ Available Scripts
+## 📋 Pré-requisitos
 
-- **npm start**: Start the development server
-- **npm run build**: Build the project for production
-- **npm test**: Run unit tests
-- **npm run watch**: Build and watch for changes in development mode
+Node.js (v18.x ou superior)
 
-## 📦 Deployment
+npm (v9.x ou superior)
 
-Build the application for production:
+Angular CLI (v19.x)
 
-```bash
-npm run build
-```
+🔧 Instalação
 
-This will generate optimized static files in the `dist/` directory that can be deployed to any static hosting service.
+Clone o repositório:
 
-## 🤝 Contributing
+git clone https://github.com/mayconbaptista/BomNegocio_v2.git
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+cd BomNegocio_v2
 
-## 📝 License
+Instale as dependências:
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+npm install
 
-## 🙏 Acknowledgments
+Inicie o servidor de desenvolvimento:
 
-- Design inspired by Amazon's user interface
-- Icons provided by [Flowbite](https://flowbite.com/)
-- Product images and descriptions are used for demonstration purposes only
+npm start
 
-## Arquiteture
+Abra o navegador e acesse:
 
-- Arquitetura Baseada em Funcionalidades (Feature-Based Architecture).
+http://localhost:4200
 
-```
+## 🏗️ Arquitetura
+
+📁 Estrutura do Projeto
+
+Arquitetura Baseada em Funcionalidades (Feature-Based Architecture).
+
+```plaintext
 src/app/
 ├── core/
-│   ├── services/         // Serviços Singleton (AuthService, LoggerService)
-│   ├── guards/           // Route Guards (AuthGuard)
-│   ├── interceptors/     // HTTP Interceptors
-│   └── models/           // Modelos globais
+│   ├── services/         # Serviços Singleton (AuthService, LoggerService)
+│   ├── guards/           # Guardas de rota (AuthGuard)
+│   ├── interceptors/     # Interceptadores HTTP
+│   └── models/           # Modelos globais
 │
-├── features/             // Pasta para agrupar as funcionalidades
+├── features/
 │   ├── products/
 │   │   ├── components/
 │   │   │   ├── product-list/
 │   │   │   └── product-detail/
 │   │   ├── services/
-│   │   │   └── product.service.ts  // Serviço que chama a API de produtos diretamente
+│   │   │   └── product.service.ts
 │   │   ├── models/
-│   │   │   └── product.model.ts    // Interface do produto
+│   │   │   └── product.model.ts
 │   │   ├── products-routing.module.ts
-│   │   └── products.module.ts      // Módulo que agrupa tudo de "products"
+│   │   └── products.module.ts
 │   │
 │   ├── cart/
 │   │   ├── components/
@@ -133,7 +92,7 @@ src/app/
 │   │   └── cart.module.ts
 │
 ├── shared/
-│   ├── components/         // Componentes reutilizáveis (Button, Modal, Input)
+│   ├── components/
 │   ├── directives/
 │   ├── pipes/
 │   └── shared.module.ts
@@ -142,3 +101,31 @@ src/app/
 ├── app.component.ts
 └── app.module.ts
 ```
+
+npm start: Inicia o servidor de desenvolvimento
+
+npm run build: Gera a build para produção
+
+npm test: Executa os testes unitários
+
+npm run watch: Compila e observa alterações no modo de desenvolvimento
+
+## 📦 Deploy
+
+Gere a aplicação para produção:
+
+npm run build
+
+Isso irá gerar arquivos estáticos otimizados no diretório dist/, que podem ser publicados em qualquer serviço de hospedagem estática.
+
+## 🤝 Contribuindo
+
+Faça um fork do repositório
+
+Crie uma branch para sua funcionalidade (git checkout -b feature/minha-feature-incrivel)
+
+Faça commit das alterações (git commit -m 'Adiciona funcionalidade incrível')
+
+Envie para a branch (git push origin feature/minha-feature-incrivel)
+
+Abra um Pull Request
