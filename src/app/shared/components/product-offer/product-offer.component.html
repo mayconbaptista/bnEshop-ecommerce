@@ -57,13 +57,13 @@
         </svg>
       </div>
       <p class="border-l border-gray-500 text-gray-500 ps-2 text-sm">
-        {{ product().reviews }} reviews
+        {{ product().reviews }} avaliações
       </p>
     </div>
     <div class="flex gap-2 text-2xl font-bold text-gray-900 items-baseline">
-      <p>{{ product().price | currency }}</p>
+      <p>{{ product().price | currency : 'BRL' }}</p>
       <del class="text-gray-500 text-base">{{
-        product().previousPrice | currency
+        product().previousPrice | currency : 'BRL'
       }}</del>
     </div>
     <div class="p-2">
@@ -71,7 +71,7 @@
         [routerLink]="['products', product().id]"
         class="inline-flex gap-2 text-gray-500 items-end text-sm hover:underline"
       >
-        See More
+        Veja mais
         <svg
           class="size-4"
           fill="currentColor"

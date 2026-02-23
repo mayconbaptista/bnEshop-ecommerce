@@ -3,6 +3,7 @@ import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} fr
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import { MatStepContent, MatStepLabel } from "@angular/material/stepper";
+import { MatButton } from "@angular/material/button";
 
 export interface ShippingAddresFrom{
   nome: FormControl<string | null>;
@@ -21,9 +22,7 @@ export interface ShippingAddresFrom{
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
-    ReactiveFormsModule,
-    MatStepContent,
-    MatStepLabel
+    ReactiveFormsModule
 ],
   templateUrl: './shipping-address.component.html',
   styleUrl: './shipping-address.component.css'

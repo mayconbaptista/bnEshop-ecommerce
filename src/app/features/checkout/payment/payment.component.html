@@ -1,0 +1,42 @@
+
+<form action="" [formGroup]="this._paymentForm()">
+    <div class="d-flex d-flex-row align-items-center justify-content-center">
+        <div>
+            <mat-form-field class="py-2 px-4">
+                <mat-label>Tipo</mat-label>
+                <input matInput maxlength="20" placeholder="PIX, cartão de crédito ou débito e boleto" formControlName="type" />
+                @if (this._paymentForm().controls.type.invalid) {
+                    <mat-hint align="end">/10</mat-hint>
+                }
+            </mat-form-field>
+
+            <mat-form-field class="px-4 py-2">
+                <mat-label>Numero do cartão</mat-label>
+                <input matInput maxlength="20" placeholder="0000 0000 0000 0000" formControlName="cardNumber" />
+                @if (this._paymentForm().controls.cardNumber.invalid) {
+                    <mat-hint align="start">Numero do cartão invalido</mat-hint>
+                }
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field class="px-4 py-2">
+                <mat-label>Nome do titular</mat-label>
+                <input matInput minlength="8" maxlength="9" minlength="8" placeholder="ex: Fulano de tal" formControlName="cardHolderName" />
+                <mat-hint align="end"></mat-hint>
+            </mat-form-field>
+
+            <mat-form-field class="px-4 py-2">
+                <mat-label>Validade</mat-label>
+                <input matInput maxlength="100" placeholder="06/30" formControlName="cardDateValidity" >
+                <mat-hint></mat-hint>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field class="px-4 py-2">
+                <mat-label>Codigo CVV</mat-label>
+                <input matInput placeholder="000" type="text" minlength="3" maxlength="3" formControlName="cardCvv">
+                <mat-hint></mat-hint>
+            </mat-form-field>
+        </div>
+    </div>
+</form>

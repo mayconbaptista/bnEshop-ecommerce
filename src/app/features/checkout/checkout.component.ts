@@ -6,10 +6,12 @@ import {MatStepperModule} from '@angular/material/stepper';
 import {MatButtonModule} from '@angular/material/button';
 import { ShippingAddressComponent, ShippingAddresFrom } from './shipping-address/shipping-address.component';
 import { BillingAddressForm, BillingAddressComponent } from './billing-address/billing-address.component';
+import { PaymentComponent, PaymentForm } from "./payment/payment.component";
 
 export interface CheckoutForm{
   enderecoEntrega: FormGroup<ShippingAddresFrom>;
   enderecoCobranca: FormGroup<BillingAddressForm>;
+  pagamento: FormGroup<PaymentForm>;
 }
 
 @Component({
@@ -23,7 +25,8 @@ export interface CheckoutForm{
     MatFormFieldModule,
     MatInputModule,
     ShippingAddressComponent,
-    BillingAddressComponent
+    BillingAddressComponent,
+    PaymentComponent
 ],
   templateUrl: './checkout.component.html',
   styleUrl: './checkout.component.css'
@@ -40,6 +43,10 @@ export class CheckoutComponent implements OnInit {
 
   public get getBillingAddresGroup():FormGroup<BillingAddressForm>{
     return this._form.get('enderecoCobranca') as FormGroup<BillingAddressForm>;
+  }
+
+  public get getPaymentFormGroup():FormGroup<PaymentForm>{
+    return this._form.get('pagamento') as FormGroup<PaymentForm>;
   }
   
   ngOnInit(): void {
@@ -65,6 +72,13 @@ export class CheckoutComponent implements OnInit {
         bairro: new FormControl<string | null>(null, [Validators.required]),
         cidade: new FormControl<string | null>(null, [Validators.required]),
         estado: new FormControl<string | null>(null, [Validators.required])
+      }),
+      pagamento: this._formBuilder.group<PaymentForm>({
+        type: new FormControl<string | null>(null, [Validators.required]),
+        cardNumber: new FormControl<string | null>(null, [Validators.required]),
+        cardHolderName: new FormControl<string | null>(null, [Validators.required]),
+        cardDateValidity: new FormControl<Date | null>(null, [Validators.required]),
+        cardCvv: new FormControl<string | null>(null, [Validators.required])
       })
     })
   }

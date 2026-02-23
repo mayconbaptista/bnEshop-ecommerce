@@ -26,6 +26,8 @@
         </mat-step>
         <mat-step>
           <ng-template matStepLabel>Pagamento</ng-template>
+
+          <app-payment [_paymentForm]="this.getPaymentFormGroup"></app-payment>
           <div class="w-full d-flex d-flex-column justify-content-between align-items-center">
             <button matButton matStepperPrevious>Anterior</button>
             <button [disabled]="true" matButton matStepperNext>Próximo</button>

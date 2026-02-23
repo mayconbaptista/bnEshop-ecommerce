@@ -7,6 +7,7 @@ import { forkJoin, map, of, switchMap } from 'rxjs';
 import { ProductService } from '../../core/services/product.service';
 import { CartItem } from '../../core/models/cart-item';
 import { RouterLink } from "@angular/router";
+import { NotificationHandlerService } from '../../core/services/notification-handler.service';
 
 @Component({
   selector: 'app-cart',
@@ -20,6 +21,7 @@ import { RouterLink } from "@angular/router";
 export class CartComponent implements OnInit {
 
   cartApiService:CartApiService = inject(CartApiService);
+  private notificationService:NotificationHandlerService = inject(NotificationHandlerService);
   productService = inject(ProductService);
 
   cartProducts: WritableSignal<CartProduct[]> = signal([]);
@@ -60,7 +62,7 @@ export class CartComponent implements OnInit {
           this.cartProducts.set(cartProducts);
         },
         error: (err) => {
-          window.alert("erro ao buscar dados do carrinho");
+          this.notificationService.handleHttpError(err);
         },
         complete: () => {
           console.log("Completed fetching cart data");

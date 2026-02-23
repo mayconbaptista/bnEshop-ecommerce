@@ -20,10 +20,7 @@ export interface BillingAddressForm{
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
-    ReactiveFormsModule,
-    MatStepContent,
-    MatStepLabel,
-    MatButton
+    ReactiveFormsModule
   ],
   templateUrl: './billing-address.component.html',
   styleUrl: './billing-address.component.css'
