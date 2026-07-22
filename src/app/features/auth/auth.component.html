@@ -1,4 +1,30 @@
 
-<app-login> 
+<div class="auth-wrapper">
 
-</app-login>
+    <!-- Navegação entre tela de login e register -->
+    <ul class="flex w-full items-center justify-around mb-3">
+      <li class="nav-item">
+        <a 
+              class="flex w-full items-center justify-center rounded-lg bn-bg-blue px-5 py-2.5 text-sm font-medium text-slate-900 focus:outline-none focus:ring-4 focus:ring-yellow-200 transition-colors disabled:bg-disabled-bg disabled:text-disabled-text disabled:cursor-not-allowed"
+            id="tab-login" 
+            routerLinkActive="active"
+            routerLink="login"
+        >
+        Entrar
+        </a>
+      </li>
+      <li class="nav-item">
+        <a 
+              class="flex w-full items-center justify-center rounded-lg bn-bg-green px-5 py-2.5 text-sm font-medium text-slate-900 focus:outline-none focus:ring-4 focus:ring-yellow-200 transition-colors disabled:bg-disabled-bg disabled:text-disabled-text disabled:cursor-not-allowed" 
+            id="tab-register" 
+            routerLink="register"
+            routerLinkActive="active"
+        >
+        Cadastre-se
+        </a>
+      </li>
+    </ul>
+
+    <!-- Componentes filhos ( login e register)-->
+    <router-outlet></router-outlet>
+</div>

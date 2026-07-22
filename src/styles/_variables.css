@@ -1,0 +1,10 @@
+/* src/app/styles/_variables.css (ou o caminho onde ele estiver no seu projeto) */
+
+@theme {
+  /* Cor Primária baseada no yellow-400 nativo do Tailwind */
+  --color-primary: var(--color-yellow-400);
+  
+  /* Cores para o botão desabilitado baseadas no gray nativo */
+  --color-disabled-bg: var(--color-gray-200);
+  --color-disabled-text: var(--color-gray-400);
+}

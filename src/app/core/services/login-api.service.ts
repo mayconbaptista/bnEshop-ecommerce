@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { ApiService } from './api.service';
 import { Observable, tap } from 'rxjs';
-import { UserLogin, Token } from '../models/';
+import { UserLogin, Token, UserRegister } from '../models/';
 
 @Injectable({
   providedIn: 'root'
@@ -24,5 +24,10 @@ export class LoginApiService {
           localStorage.setItem('accessToken', response.accessToken);
         }
       }));
+  }
+
+  public register(data: UserRegister): Observable<void> {
+    return this.baseService
+      .post<void>(`${this.authBaseUrl}/register`, data);
   }
 }

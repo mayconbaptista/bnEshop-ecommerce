@@ -1,0 +1,21 @@
+.auth-wrapper{
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.nav-pills .nav-link {
+    cursor: pointer;
+}
+
+.bn-bg-blue{
+    background-color: blue;
+    color: white;
+    width: 120px;
+}
+
+.bn-bg-green{
+    background-color: green;
+    color: white;
+    width: 120px;
+}

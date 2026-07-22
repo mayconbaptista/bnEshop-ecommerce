@@ -5,13 +5,15 @@ import { MatInputModule } from '@angular/material/input';
 import { LoginApiService } from '../../../core/services/login-api.service';
 import { Router } from '@angular/router';
 import { NotificationHandlerService } from '../../../core/services/notification-handler.service';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-login',
   imports: [
     MatFormFieldModule,
     MatInputModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatButtonModule
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
@@ -24,8 +26,8 @@ export class LoginComponent {
   private loginApiService: LoginApiService = inject(LoginApiService);
 
   protected loginForm: FormGroup = this.fb.group({
-    userEmail: [null, Validators.required],
-    password: [null, Validators.required]
+    userEmail: [null, [Validators.required, Validators.email]],
+    password: [null, [Validators.required, Validators.minLength(6)]]
   });
 
   constructor() {}
