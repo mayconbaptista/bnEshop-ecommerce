@@ -1,0 +1,84 @@
+name: Deploy staging (frontend)
+
+# Settings > Secrets and variables > Actions
+#   Secrets (gerados pelo infra/scripts/New-GitHubDeployKey.ps1 do repo do
+#   backend, usuario terraform output github_frontend_user):
+#     AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY
+#   Variables (valores do `terraform output` no repo do backend):
+#     SPA_BUCKET                  -> spa_bucket
+#     CLOUDFRONT_DISTRIBUTION_ID  -> cloudfront_distribution_id
+#
+# Sem OIDC: a SCP do Free Tier da nova experiencia da AWS nega a criacao do
+# provedor OIDC (ADR-015 no repo do backend).
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths-ignore:
+      - "**/*.md"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-staging-frontend
+  cancel-in-progress: true # SPA nao tem migration: o deploy mais novo vence
+
+env:
+  AWS_REGION: us-east-2 # regiao do projeto AWS (a SCP nega as demais)
+  DIST: dist/amazon-frontend/browser
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: staging
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - run: npx ng build --configuration staging
+
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      # 1) JS/CSS tem hash no nome (outputHashing: all): conteudo novo = nome
+      #    novo, entao podem ser cacheados "para sempre" no browser e no CDN.
+      #    Sem --delete: usuarios com o index.html antigo aberto ainda
+      #    carregam lazy chunks da versao anterior sem 404.
+      - name: Upload assets versionados (immutable)
+        run: |
+          aws s3 sync "$DIST" "s3://${{ vars.SPA_BUCKET }}" --only-show-errors \
+            --exclude "*" --include "*.js" --include "*.css" \
+            --cache-control "public,max-age=31536000,immutable"
+
+      # 2) Arquivos sem hash (favicon, imagens de /public): cache curto.
+      - name: Upload demais arquivos
+        run: |
+          aws s3 sync "$DIST" "s3://${{ vars.SPA_BUCKET }}" --only-show-errors \
+            --exclude "*.js" --exclude "*.css" --exclude "index.html" \
+            --cache-control "public,max-age=3600"
+
+      # 3) index.html por ULTIMO e sem cache: e o "ponteiro" para a versao.
+      #    Enviar antes poderia referenciar chunks que ainda nao subiram.
+      - name: Upload index.html
+        run: |
+          aws s3 cp "$DIST/index.html" "s3://${{ vars.SPA_BUCKET }}/index.html" \
+            --cache-control "no-cache" --content-type "text/html; charset=utf-8"
+
+      # Invalida so o necessario: 1.000 paths/mes sao gratuitos. Assets com
+      # hash nunca precisam de invalidacao.
+      - name: Invalida index.html no CloudFront
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id "${{ vars.CLOUDFRONT_DISTRIBUTION_ID }}" \
+            --paths "/" "/index.html" --query Invalidation.Id --output text

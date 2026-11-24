@@ -8,3 +8,17 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/*
+ * Tailwind Preflight define border-style em todos os elementos. No outline do
+ * Angular Material isso faz a lateral direita do notch aparecer ao lado do
+ * mat-label quando o campo recebe foco.
+ */
+.mat-mdc-form-field .mdc-notched-outline__notch {
+  border-right-style: none;
+}
+
+[dir="rtl"] .mat-mdc-form-field .mdc-notched-outline__notch {
+  border-right-style: solid;
+  border-left-style: none;
+}

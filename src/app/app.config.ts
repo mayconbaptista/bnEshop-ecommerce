@@ -4,6 +4,7 @@ import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { routes } from './app.routes';
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { authInterceptorInterceptor } from './core/interceptors/auth-interceptor.interceptor';
+import { apiAvailabilityInterceptor } from './core/interceptors/api-availability.interceptor';
 import { provideAnimations } from '@angular/platform-browser/animations'
 import { provideToastr } from 'ngx-toastr';
 
@@ -11,7 +12,7 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes, withComponentInputBinding()),
-    provideHttpClient(withFetch(), withInterceptors([authInterceptorInterceptor])),
+    provideHttpClient(withFetch(), withInterceptors([apiAvailabilityInterceptor, authInterceptorInterceptor])),
     provideAnimations(),
     provideToastr({ 
       timeOut: 4000,

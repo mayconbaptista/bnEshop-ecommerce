@@ -5,7 +5,6 @@ import { CartProduct } from '../../core/models/cart-product';
 import { CartApiService } from '../../core/services/cart-api.service';
 import { forkJoin, map, of, switchMap } from 'rxjs';
 import { ProductService } from '../../core/services/product.service';
-import { CartItem } from '../../core/models/cart-item';
 import { RouterLink } from "@angular/router";
 import { NotificationHandlerService } from '../../core/services/notification-handler.service';
 

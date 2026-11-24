@@ -6,6 +6,7 @@ import { AuthComponent } from './features/auth/auth.component';
 import { LoginComponent } from './features/auth/login/login.component';
 import { CheckoutComponent } from './features/checkout/checkout.component';
 import { RegisterComponent } from './features/auth/register/register.component';
+import {authGuard} from './core/guards/auth.guard';
 
 export const routes: Routes = [
   {
@@ -41,6 +42,7 @@ export const routes: Routes = [
   },
   {
     path: 'checkout',
-    component: CheckoutComponent
+    component: CheckoutComponent,
+    canActivate: [authGuard]
   }
 ];

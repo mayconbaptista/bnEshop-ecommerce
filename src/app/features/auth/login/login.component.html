@@ -80,22 +80,22 @@
   <!-- Email input -->
   <div class="form-floating w-full mb-4">
     <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Email</mat-label>
         <input 
             formControlName="userEmail"
-            class="w-full"
             type="email" 
             id="loginName" 
             name="loginName" 
-            class="form-control"
             placeholder="Email"
+            autocomplete="email"
             matInput>
-        @if(this.loginForm.get('email')?.invalid && this.loginForm.get('email')?.touched) {
-          <mat-error *ngIf="this.loginForm.get('email')?.errors?.['required']">
-            Email é obrigatório
-          </mat-error>
-          <mat-error *ngIf="this.loginForm.get('email')?.errors?.['email']">
-            Email inválido
-          </mat-error>
+        @if(this.loginForm.get('userEmail')?.invalid && this.loginForm.get('userEmail')?.touched) {
+          @if (this.loginForm.get('userEmail')?.errors?.['required']) {
+            <mat-error>Email é obrigatório</mat-error>
+          }
+          @if (this.loginForm.get('userEmail')?.errors?.['email']) {
+            <mat-error>Email inválido</mat-error>
+          }
         }
     </mat-form-field>
   </div>
@@ -103,23 +103,23 @@
   <!-- Password input -->
   <div class="form-floating mb-4">
     <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Senha</mat-label>
       <input 
           formControlName="password"
-          class="w-full"
           type="password" 
           id="loginPassword" 
           name="loginPassword" 
-          class="form-control"
           placeholder="Password" 
+          autocomplete="current-password"
           matInput>
 
       @if(this.loginForm.get('password')?.invalid && this.loginForm.get('password')?.touched) {
-        <mat-error *ngIf="this.loginForm.get('password')?.errors?.['required']">
-          Senha é obrigatória
-        </mat-error>
-        <mat-error *ngIf="this.loginForm.get('password')?.errors?.['minlength']">
-          Senha deve ter no mínimo 6 caracteres
-        </mat-error>
+        @if (this.loginForm.get('password')?.errors?.['required']) {
+          <mat-error>Senha é obrigatória</mat-error>
+        }
+        @if (this.loginForm.get('password')?.errors?.['minlength']) {
+          <mat-error>Senha deve ter no mínimo 6 caracteres</mat-error>
+        }
       }
     </mat-form-field>
   </div>

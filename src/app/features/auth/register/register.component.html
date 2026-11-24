@@ -87,8 +87,8 @@
           formControlName="userName"
           id="registerName" 
           name="registerName" 
-          class="w-full"
           placeholder="Ex: fulano de tal"
+          autocomplete="name"
           required>
         @if (this.registerForm.get('userName')?.hasError('required')) {
                 <mat-hint align="end">O nome é obrigatório</mat-hint>
@@ -106,8 +106,8 @@
             type="email" 
             id="registerEmail" 
             name="registerEmail" 
-            class="form-control"
             placeholder="Email" 
+            autocomplete="email"
             required>
         @if(this.registerForm.get('email')?.hasError('required')) {
             <mat-hint align="end">O email é obrigatório</mat-hint>
@@ -128,8 +128,8 @@
             type="tel" 
             id="registerPhoneNumber" 
             name="registerPhoneNumber" 
-            class="form-control"
             placeholder="celular" 
+            autocomplete="tel"
             required>
         @if (this.registerForm.get('phoneNumber')?.hasError('required')) {
             <mat-hint align="end">O número de telefone é obrigatório</mat-hint>
@@ -150,8 +150,8 @@
                 type="password" 
                 id="registerPassword" 
                 name="registerPassword" 
-                class="form-control"
                 placeholder="Senha" 
+                autocomplete="new-password"
                 required>
             @if (this.registerForm.get('password')?.getError('required')) {
                 <mat-hint align="end">A senha é obrigatória</mat-hint>
@@ -172,8 +172,8 @@
             type="password" 
             id="registerConfirmPassword" 
             name="registerConfirmPassword" 
-            class="form-control"
             placeholder="Confirme sua senha" 
+            autocomplete="new-password"
             required>
         @if (this.senhasDiferentes()) {
             <mat-hint align="end">As senhas não coincidem!</mat-hint>

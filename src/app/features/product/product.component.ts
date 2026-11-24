@@ -4,6 +4,7 @@ import { CurrencyPipe, AsyncPipe } from '@angular/common';
 import { ProductService } from '../../core/services/product.service';
 import { Observable } from 'rxjs';
 import { CartApiService } from '../../core/services/cart-api.service';
+import { NotificationHandlerService } from '../../core/services/notification-handler.service';
 
 @Component({
   selector: 'app-product',
@@ -16,6 +17,7 @@ export class ProductComponent implements OnInit {
 
   private cartApiService = inject(CartApiService);
   private productService = inject(ProductService);
+  private notificationService:NotificationHandlerService = inject(NotificationHandlerService);
   
   ngOnInit(): void {
     this.product$ = this.productService.getById(this.id());
@@ -29,8 +31,12 @@ export class ProductComponent implements OnInit {
     }
     
     this.cartApiService.Adicionar(cartRequest).subscribe({
-      next: () => window.alert("produto inserido ao carrinho com sucesso"),
-      error: (err) => window.alert("erro ao inserir produto ao carrinho")
+      next: () => {
+        this.notificationService.handleHttpSuccess("Produto adicionado ao carrinho com sucesso!");
+      },
+      error: (err) => {
+        this.notificationService.handleHttpError(err);
+      }
     });
   }
 }
